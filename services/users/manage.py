@@ -26,5 +26,13 @@ def test():
         return 0
     return 1
 
+# Make the `seed_db` command accessible from the command line
+@cli.command()
+def seed_db():
+    """Seeds the database (i.e. adds some initial data)"""
+    db.session.add(User(username='josh', email="bolualawode@gmail.com"))
+    db.session.add(User(username='jondoe', email="jon@doe.com"))
+    db.session.commit()
+
 if __name__ == '__main__':
     cli()

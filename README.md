@@ -24,17 +24,21 @@ Once the command is executed, you can access the app at the following link: [htt
 
 ## Creating a database for Testing
 
-This application is composed of a few services which all depend on their individual databases. To test the ```users``` service, you need to first create a ```users``` database, from the command line, by using this command (at the root of the app):
+This application is composed of a few services which all depend on their individual databases. To test the ```users``` service, you can first create a ```users``` database, from the command line, by using this command (at the root of the app):
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py recreate_db
 
-Now you can run the tests in the section below.
-
 ## Testing the app
 
-The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command (ensure that the ```users``` database has been created):
+The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command:
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py test
+
+## Seeding the database
+
+Sometimes it might be helpful to seed the database with some initial data during development in order to get some useful response. This can be done from the command line using the following command:
+
+        $ docker-compose -f docker-compose-dev.yml run users python manage.py seed_db
 
 ## Permissions
 

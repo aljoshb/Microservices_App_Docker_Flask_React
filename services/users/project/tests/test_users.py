@@ -5,6 +5,15 @@ from project.tests.base import BaseTestCase
 from project import db
 from project.api.models import User
 
+def add_user(username, email):
+    """
+    Helper function to add users to the database for testing purposes.
+    """
+    user = User(username=username, email=email)
+    db.session.add(user)
+    db.session.commit()
+    return user
+
 class TestUserService(BaseTestCase):
     """Tests for the Users Service."""
 
@@ -89,9 +98,7 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = User(username='josh', email='bolualawode@gmail.com')
-        db.session.add(user)
-        db.session.commit()
+        user = add_user('josh', 'bolualawode@gmail.com')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
@@ -117,6 +124,26 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 404)
             self.assertIn('User does not exist', data['message'])
             self.assertIn('fail', data['status'])
+
+    def test_all_users(self):
+        """Ensure get all users behaves correctly."""
+        add_user('josh', 'bolualawode@gmail.com')
+        add_user('jondoe', 'jon@doe.com')
+        with self.client:
+            response = self.client.get('/users')
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(data['data']['users']), 2)
+            self.assertIn('josh', data['data']['users'][0]['username'])
+            self.assertIn(
+                'bolualawode@gmail.com', data['data']['users'][0]['email']
+            )
+            self.assertIn('jondoe', data['data']['users'][1]['username'])
+            self.assertIn(
+                'jon@doe.com', data['data']['users'][1]['email']
+            )
+            self.assertIn('success', data['status'])
+
 
 if __name__ == '__main__':
     unittest.main()
