@@ -12,19 +12,27 @@ Digging a bit deeper, you'll find that the project uses the following:
 
 ```Python, Flask, Flask-SQLAlchemy, PostgreSQL, Flask-Testing, Gunicorn, Nginx, Docker, Docker Compose, Docker Machine, Flask Blueprints, Jinja Templates, Travis (CI), Node, Create React App, React, Enzyme, Jest, Axios, Flask-CORS, React forms, Flask Debug Toolbar, Flask-Migrate, Flask-Bcrypt, PyJWT, react-router-dom, Bulma, React Authentication and Authorization, Cypress, Swagger UI, AWS, EC2, Elastic Container Registry (ECR), Elastic Container Service (ECS), Elastic Load Balancing (ELB), Application Load Balancer (ALB), Relational Database Service (RDS), AWS Lambda and API Gateway, AWS Lambda and ECS, PropTypes```
 
-## Run the app
+## Run the app with Docker Compose
 
-To run and build the application locally, cd into the root directory and type the following command:
+To run and build the application locally (in development mode), cd into the root directory and type the following command:
 
-        $ docker-compose -f docker-compose-dev.yml up -d --build
+        $ docker-compose -f docker-compose-dev.yml up -d
 
 The above command will build and run the application, in the background (because of the ```-d``` flag) and not show any debug output. To show the debug output (which might be preferrable, incase the app crahses) remove the ```-d``` flag from the command above.
 
 Once the command is executed, you can access the app at the following link: [http://localhost:5001/users/ping]("http://localhost:5001/users/ping").
 
+## Creating a database for Testing
+
+This application is composed of a few services which all depend on their individual databases. To test the ```users``` service, you need to first create a ```users``` database, from the command line, by using this command (at the root of the app):
+
+        $ docker-compose -f docker-compose-dev.yml run users python manage.py recreate_db
+
+Now you can run the tests in the section below.
+
 ## Testing the app
 
-The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command:
+The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command (ensure that the ```users``` has been created):
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py test
 
