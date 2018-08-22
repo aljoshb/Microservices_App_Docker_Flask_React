@@ -32,7 +32,7 @@ Now you can run the tests in the section below.
 
 ## Testing the app
 
-The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command (ensure that the ```users``` has been created):
+The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command (ensure that the ```users``` database has been created):
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py test
 
