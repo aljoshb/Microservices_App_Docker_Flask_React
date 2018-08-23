@@ -6,11 +6,12 @@ from flask_sqlalchemy import SQLAlchemy
 # Instantiate the database
 db = SQLAlchemy()
 
+
 def create_app(script_info=None):
 
     # Instantiate the app
     app = Flask(__name__)
-    
+
     # Set configuration
     app_settings = os.getenv("APP_SETTINGS")
     app.config.from_object(app_settings)
