@@ -4,6 +4,10 @@ This project is a code evaluation web application that allows users to take codi
 
 This web application is architected in a microservices fashion and is built using Docker, Flask and React. I built this application using test-driven development (TDD) principles by writing tests before writing the code that the tests are for.
 
+## Installation Requirements
+
+This project uses Docker to set up containers and deploy the contains to and EC2 instance, so it is important that Docker is installed on the development machine.
+
 ## Tech Stack
 
 This is quite a large project and as a result, it uses a lot of tools and technologies to power the app. At a high level, the project uses Flask, Docker and React.
