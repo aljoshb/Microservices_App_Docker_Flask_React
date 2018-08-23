@@ -20,7 +20,7 @@ Digging a bit deeper, you'll find that the project uses the following:
 
 To run and build the application locally (in development mode), cd into the root directory and type the following command:
 
-        $ docker-compose -f docker-compose-dev.yml up -d
+        $ docker-compose -f docker-compose-dev.yml up -d --build
 
 The above command will build and run the application, in the background (because of the ```-d``` flag) and not show any debug output. To show the debug output (which might be preferrable, incase the app crahses) remove the ```-d``` flag from the command above.
 

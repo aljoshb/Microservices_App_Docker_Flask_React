@@ -1,0 +1,25 @@
+# Base image
+FROM python:3.6.5-alpine
+
+# Install dependencies
+RUN apk update && \
+    apk add --virtual build-deps gcc python-dev musl-dev && \
+    apk add postgresql-dev && \
+    apk add netcat-openbsd
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Add and install requirements
+COPY ./requirements.txt /usr/src/app/requirements.txt
+RUN pip install -r requirements.txt
+
+# Add entrypoint.sh
+COPY ./entrypoint.sh /usr/src/app/entrypoint-prod.sh
+RUN chmod +x /usr/src/app/entrypoint-prod.sh
+
+# Copy and add the current directory contents into the container at /usr/src/app
+COPY . /usr/src/app
+
+# Run the server
+CMD ["/usr/src/app/entrypoint-prod.sh"]
