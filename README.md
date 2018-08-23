@@ -1,6 +1,6 @@
 # Introduction
 
-[![Build Status](https://travis-ci.org/aljoshb/Microservices_App_Docker_Flask_React.svg?branch=master)](https://travis-ci.org/aljoshb/Microservices_App_Docker_Flask_React)
+[![Build Status](https://travis-ci.com/aljoshb/Microservices_App_Docker_Flask_React.svg?branch=master)](https://travis-ci.org/aljoshb/Microservices_App_Docker_Flask_React)
 
 [test](httpets)
 This project is a code evaluation web application that allows users to take coding exercises and get graded instantly on their performance.
