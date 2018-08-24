@@ -8,7 +8,7 @@ This web application is architected in a microservices fashion and is built usin
 
 ## Installation Requirements
 
-This project uses Docker to set up containers and deploy the contains to and EC2 instance, so it is important that Docker is installed on the development machine.
+This project uses Docker for development and deployment to AWS (EC2 instance), so it is important that Docker is installed on the development machine.
 
 ## Tech Stack
 
