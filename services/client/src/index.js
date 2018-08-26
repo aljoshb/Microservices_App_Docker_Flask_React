@@ -5,13 +5,17 @@ import axios from 'axios';
 class App extends Component {
     constructor() {
         super();
-        this.getUsers();
+        // this.getUsers();
     }
 
     getUsers() {
         axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
         .then((res) => { console.log(res.data.data); })
         .catch((err) => { console.log(err); }); 
+    }
+
+    componentDidMount() {
+        this.getUsers();
     }
 
     render() {
