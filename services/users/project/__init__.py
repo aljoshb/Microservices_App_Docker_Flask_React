@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_cors import CORS
 
 # Instantiate the database
 db = SQLAlchemy()
@@ -15,6 +16,9 @@ def create_app(script_info=None):
 
     # Instantiate the app
     app = Flask(__name__)
+
+    # Enable CORS on all routes from any domain
+    CORS(app)
 
     # Set configuration
     app_settings = os.getenv("APP_SETTINGS")
