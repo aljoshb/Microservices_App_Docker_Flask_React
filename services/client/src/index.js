@@ -25,8 +25,8 @@ class App extends Component {
 
     addUser(event) {
         event.preventDefault();
-        console.log('sanity check!');
-        console.log(this.state);
+        // console.log('sanity check!');
+        // console.log(this.state);
     
         const data = {
             username: this.state.username,
@@ -36,6 +36,7 @@ class App extends Component {
         .then((res) => { 
             this.getUsers();
             this.setState({ username: '', email: ''});
+            // console.log(res);
         })
         .catch((err) => { console.log(err); });
     }

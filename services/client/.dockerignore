@@ -2,7 +2,7 @@ node_modules
 coverage
 build
 env
-htmlconv
+htmlcov
 .dockerignore
 Dockerfile-dev
 Dockerfile-prod

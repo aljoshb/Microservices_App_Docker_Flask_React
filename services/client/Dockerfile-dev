@@ -1,16 +1,16 @@
-# Base image
+# base image
 FROM node:10.4.1-alpine
 
-# Set working directory
+# set working directory
 WORKDIR /usr/src/app
 
-# Add `/usr/src/app/node_modules/.bin` to $PATH
+# add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-# Install and cache app dependencies
+# install and cache app dependencies
 COPY package.json /usr/src/app/package.json
-RUN npm install --silent
-RUN npm install react-scripts@1.1.4 -g --silent
+RUN npm install
+RUN npm install react-scripts@1.1.4 -g
 
-# Start app
+# start app
 CMD ["npm", "start"]
