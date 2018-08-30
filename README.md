@@ -56,4 +56,4 @@ The above command should be run from the root of ```services/users/```.
 
 ## Code Quality
 
-For ensure good code quality according to ```pep8``` standards, this project uses ```Flaske8``` for linting. The linting tests are also run as part of the continous integration pipeline with Travis.
+For ensure good code quality according to ```pep8``` standards, this project uses ```Flake8``` for linting. The linting tests are also run as part of the continous integration pipeline with Travis.
