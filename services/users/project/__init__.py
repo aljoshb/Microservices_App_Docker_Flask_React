@@ -16,7 +16,8 @@ toolbar = DebugToolbarExtension()
 # Data migration
 migrate = Migrate()
 
-# Bcrypt for password hashing
+# Bcrypt for password hashing extension
+bcrypt = Bcrypt()
 
 
 def create_app(script_info=None):

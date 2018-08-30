@@ -46,6 +46,14 @@ Sometimes it might be helpful to seed the database with some initial data during
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py seed_db
 
+## Data Migration
+
+The data migration steps are as follows:
+
+        $ docker-compose -f docker-compose-dev.yml run users python manage.py db migrate
+
+        $ docker-compose -f docker-compose-dev.yml run users python manage.py db upgrade
+
 ## Permissions
 
 The commands above may not run if the correction permissions are not set. Below are some of the permissions that need to be set to ensure the app builds and runs according to the commands above:

@@ -23,7 +23,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'josh',
-                    'email': 'bolualawode@gmail.com'
+                    'email': 'bolualawode@gmail.com',
+                    'password': 'greaterthaneight'
                 }),
                 content_type='application/json',
             )
@@ -53,7 +54,10 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data=json.dumps({'email': 'bolualawode@gmail.com'}),
+                data=json.dumps({
+                    'email': 'bolualawode@gmail.com',
+                    'password': 'greaterthaneight'
+                    }),
                 content_type='application/json',
             )
             data = json.loads(response.data.decode())
@@ -68,7 +72,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'josh',
-                    'email': 'bolualawode@gmail.com'
+                    'email': 'bolualawode@gmail.com',
+                    'password': 'greaterthaneight'
                 }),
                 content_type='application/json',
             )
@@ -76,7 +81,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'josh',
-                    'email': 'bolualawode@gmail.com'
+                    'email': 'bolualawode@gmail.com',
+                    'password': 'greaterthaneight'
                 }),
                 content_type='application/json',
             )
@@ -89,7 +95,7 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = add_user('josh', 'bolualawode@gmail.com')
+        user = add_user('josh', 'bolualawode@gmail.com', 'greaterthaneight')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
@@ -118,8 +124,8 @@ class TestUserService(BaseTestCase):
 
     def test_all_users(self):
         """Ensure get all users behaves correctly."""
-        add_user('josh', 'bolualawode@gmail.com')
-        add_user('jondoe', 'jon@doe.com')
+        add_user('josh', 'bolualawode@gmail.com', 'greaterthaneight')
+        add_user('jondoe', 'jon@doe.com', 'greaterthaneight')
         with self.client:
             response = self.client.get('/users')
             data = json.loads(response.data.decode())
@@ -150,8 +156,8 @@ class TestUserService(BaseTestCase):
         Ensure the main route behaves correctly when users have been
         added to the database.
         """
-        add_user('josh', 'bolualawode@gmail.com')
-        add_user('jondoe', 'jon@doe.com')
+        add_user('josh', 'bolualawode@gmail.com', 'greaterthaneight')
+        add_user('jondoe', 'jon@doe.com', 'greaterthaneight')
         with self.client:
             response = self.client.get('/')
             self.assertEqual(response.status_code, 200)
@@ -165,13 +171,34 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/',
-                data=dict(username='josh', email='bolualawode@gmail.com'),
+                data=dict(username='josh',
+                          email='bolualawode@gmail.com',
+                          password='greaterthaneight'),
                 follow_redirects=True
             )
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'All Users', response.data)
             self.assertNotIn(b'<p>No users!</p>', response.data)
             self.assertIn(b'josh', response.data)
+
+    def test_add_user_invalid_json_keys_no_password(self):
+        """
+        Ensure error is thrown if the JSON object does
+        not have a password key.
+        """
+        with self.client:
+            response = self.client.post(
+                '/users',
+                data=json.dumps(dict(
+                    username='josh',
+                    email="bolualawode@gmail.com"
+                )),
+                content_type='application/json',
+            )
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 400)
+            self.assertIn('Invalid payload.', data['message'])
+            self.assertIn('fail', data['status'])
 
 
 if __name__ == '__main__':
