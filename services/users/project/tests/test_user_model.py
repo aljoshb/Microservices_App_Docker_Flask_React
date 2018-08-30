@@ -58,5 +58,5 @@ class TestUserModel(BaseTestCase):
         self.assertTrue(isinstance(user.to_json(), dict))
 
 
-        if __name__ == '__main__':
-            unittest.main()
+if __name__ == '__main__':
+    unittest.main()

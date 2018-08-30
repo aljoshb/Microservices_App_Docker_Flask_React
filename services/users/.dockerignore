@@ -3,3 +3,4 @@ env
 htmlcov
 Dockerfile-dev
 Dockerfile-prod
+migrations
