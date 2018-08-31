@@ -43,8 +43,16 @@ def test():
 @cli.command()
 def seed_db():
     """Seeds the database (i.e. adds some initial data)"""
-    db.session.add(User(username='josh', email="bolualawode@gmail.com"))
-    db.session.add(User(username='jondoe', email="jon@doe.com"))
+    db.session.add(User(
+        username='josh',
+        email="bolualawode@gmail.com",
+        password='greaterthaneight'
+    ))
+    db.session.add(User(
+        username='jondoe',
+        email="jon@doe.com",
+        password="greaterthaneight"
+    ))
     db.session.commit()
 
 # Make the `cov` command accessible from the command line
