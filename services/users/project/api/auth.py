@@ -6,6 +6,7 @@ from project import db, bcrypt
 
 auth_blueprint = Blueprint('auth', __name__)
 
+
 @auth_blueprint.route('/auth/register', methods=['POST'])
 def register_user():
     # Get post data
@@ -46,3 +47,33 @@ def register_user():
     except (exc.IntegrityError, ValueError) as e:
         db.session.rollback()
         return jsonify(response_object), 400
+
+
+@auth_blueprint.route('/auth/login', methods=['POST'])
+def login_user():
+    # Get post data
+    post_data = request.get_json()
+    response_object = {
+        'status': 'fail',
+        'message': 'Invalid payload.'
+    }
+    if not post_data:
+        return jsonify(response_object), 400
+    email = post_data.get('email')
+    password = post_data.get('password')
+    try:
+        # Fetch the user data
+        user = User.query.filter_by(email=email).first()
+        if user and bcrypt.check_password_hash(user.password, password):
+            auth_token = user.encode_auth_token(user.id)
+            if auth_token:
+                response_object['status'] = 'success'
+                response_object['message'] = 'Successfully logged in.'
+                response_object['auth_token'] = auth_token.decode()
+                return jsonify(response_object), 200
+        else:
+            response_object['message'] = 'User does not exist.'
+            return jsonify(response_object), 404
+    except Exception as e:
+        response_object['message'] = 'Try again.'
+        return jsonify(response_object), 500
