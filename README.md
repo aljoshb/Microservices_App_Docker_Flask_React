@@ -40,6 +40,12 @@ The app was developed using the principles of TDD. To run the tests for the ```u
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py test
 
+## Test Coverage
+
+For test coverage, this project uses ```Coverage.py```. To find out how much test coverage the app has, run the following command:
+
+        $ docker-compose -f docker-compose-dev.yml run users python manage.py cov
+        
 ## Seeding the database
 
 Sometimes it might be helpful to seed the database with some initial data during development in order to get some useful response. This can be done from the command line using the following command:
