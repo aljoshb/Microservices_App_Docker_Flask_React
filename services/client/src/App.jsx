@@ -27,7 +27,7 @@ class App extends Component {
 
     addUser(event) {
         event.preventDefault();
-    
+        
         const data = {
             username: this.state.username,
             email: this.state.email
@@ -38,7 +38,6 @@ class App extends Component {
             this.setState({ username: '', email: ''});
         })
         .catch((err) => {
-            console.log('an error while trying to add user');
             console.log(err); 
         });
     }
