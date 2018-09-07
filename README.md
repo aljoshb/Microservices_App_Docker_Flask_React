@@ -40,6 +40,10 @@ The app was developed using the principles of TDD. To run the tests for the ```u
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py test
 
+To run the tests for the ```client``` service, cd into the root directory of the app and run the following command:
+
+        $ docker-compose -f docker-compose-dev.yml run client npm test 
+
 ## Test Coverage
 
 For test coverage, this project uses ```Coverage.py```. To find out how much test coverage the app has, run the following command:
