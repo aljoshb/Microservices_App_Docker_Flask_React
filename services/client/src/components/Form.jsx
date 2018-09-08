@@ -1,9 +1,13 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 /* This Form component handles both registration and Login
  * with the inline if statment.
  */
 const Form = (props) => {
+    if (props.isAuthenticated) {
+        return <Redirect to='/' />;
+    }
     return (
         <div>
             <h1 className="title is-1">{props.formType}</h1>

@@ -23,6 +23,7 @@ class App extends Component {
                 email: '',
                 password: ''
             },
+            isAuthenticated: false,
         };
         this.addUser = this.addUser.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -72,7 +73,10 @@ class App extends Component {
         const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/${formType}`
         axios.post(url, data)
         .then((res) => {
-            console.log(res.data);
+            this.clearFormState();
+            window.localStorage.setItem('authToken', res.data.auth_token);
+            this.setState({ isAuthenticated: true, });
+            this.getUsers();
         })
         .catch((err) => { console.log(err); });
     }
@@ -81,6 +85,14 @@ class App extends Component {
         const obj = this.state.formData;
         obj[event.target.name] = event.target.value;
         this.setState(obj);
+    }
+
+    clearFormState() {
+        this.setState({
+            formData: { username: '', email: '', password: '' },
+            username: '',
+            email: ''
+        });
     }
 
     componentDidMount() {
@@ -118,6 +130,7 @@ class App extends Component {
                                             formData={this.state.formData}
                                             handleUserFormSubmit={this.handleUserFormSubmit}
                                             handleFormChange={this.handleFormChange}
+                                            isAuthenticated={this.state.isAuthenticated}
                                         />
                                     )} />
                                     <Route exact path="/login" render={() => (
@@ -126,6 +139,7 @@ class App extends Component {
                                             formData={this.state.formData}
                                             handleUserFormSubmit={this.handleUserFormSubmit}
                                             handleFormChange={this.handleFormChange}
+                                            isAuthenticated={this.state.isAuthenticated}
                                         />
                                     )} />
                                 </Switch>
