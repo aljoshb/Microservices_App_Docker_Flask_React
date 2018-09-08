@@ -10,7 +10,7 @@ const Form = (props) => {
             <hr/><br/>
             <form onSubmit={(event) => props.handleUserFormSubmit(event)}>
                 {props.formType === 'Register' && // inline if statement
-                    <div className="field"> 
+                    <div className="field">
                         <input
                             name="username"
                             className="input is-medium"
@@ -37,7 +37,7 @@ const Form = (props) => {
                         className="input is-medium"
                         type="password"
                         placeholder="Enter a password" required
-                        value={props.formData.email}
+                        value={props.formData.password}
                         onChange={props.handleFormChange}
                     />
                 </div>
