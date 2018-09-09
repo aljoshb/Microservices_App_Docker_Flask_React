@@ -1,6 +1,6 @@
 # MicroServiceTDD
 
-[![Build Status](https://travis-ci.com/aljoshb/Microservices_App_Docker_Flask_React.svg?branch=master)](https://travis-ci.org/aljoshb/Microservices_App_Docker_Flask_React)
+[![Build Status](https://travis-ci.com/aljoshb/Microservices_App_Docker_Flask_React.svg?branch=master)](https://travis-ci.com/aljoshb/Microservices_App_Docker_Flask_React)
 
 ## Introduction
 
