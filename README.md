@@ -1,10 +1,12 @@
-# Introduction
+# MicroServiceTDD
 
 [![Build Status](https://travis-ci.com/aljoshb/Microservices_App_Docker_Flask_React.svg?branch=master)](https://travis-ci.org/aljoshb/Microservices_App_Docker_Flask_React)
 
+## Introduction
+
 This project is a code evaluation web application that allows users to take coding exercises and get graded instantly on their performance.
 
-This web application is architected in a microservices fashion and is built using Docker, Flask and React. I built this application using test-driven development (TDD) principles by writing tests before writing the code that the tests are for.
+This web application is architected in a microservices fashion and is built using Docker, Flask and React and deployed to AWS. I built this application using test-driven development (TDD) principles by writing tests before writing the code that the tests are for.
 
 ## Installation Requirements
 
