@@ -36,6 +36,16 @@ This application is composed of a few services which all depend on their individ
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py recreate_db
 
+# Get into psql manually
+
+To get into psql manually, run the following command:
+
+        $ docker-compose -f docker-compose-dev.yml exec users-db psql -U postgres
+
+You can then connect to a database, for instance, to connect to the development database:
+
+        # \c users_dev
+
 ## Testing the app
 
 The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command:
@@ -58,9 +68,9 @@ Sometimes it might be helpful to seed the database with some initial data during
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py seed_db
 
-## Data Migration
+## Database Migration
 
-The data migration steps are as follows:
+The database migration steps are as follows:
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py db migrate
 
