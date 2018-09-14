@@ -2,6 +2,7 @@ from functools import wraps
 from flask import request, jsonify
 from project.api.models import User
 
+
 # Check that a user is authenticated
 def authenticate(f):
     @wraps(f)
@@ -23,6 +24,7 @@ def authenticate(f):
             return jsonify(response_object), 401
         return f(resp, *args, **kwargs)
     return decorated_function
+
 
 # Check if a user is an admin or not
 def is_admin(user_id):

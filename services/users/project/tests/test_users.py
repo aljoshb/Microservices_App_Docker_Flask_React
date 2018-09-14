@@ -21,10 +21,7 @@ class TestUserService(BaseTestCase):
     def test_add_user(self):
         """Ensure a new user can be added to the database."""
         # Add a test user, that we will login in with
-        add_user('test', 'test@test.com', 'test')
-        user = User.query.filter_by(email='test@test.com').first()
-        user.admin = True
-        db.session.commit()
+        add_admin('test', 'test@test.com', 'test')
         with self.client:
             # Login with the test user
             resp_login = self.client.post(
@@ -57,10 +54,7 @@ class TestUserService(BaseTestCase):
     def test_add_user_invalid_json(self):
         """Ensure error is thrown if the JSON object is empty."""
         # Add a test user, that we will login in with
-        add_user('test', 'test@test.com', 'test')
-        user = User.query.filter_by(email='test@test.com').first()
-        user.admin = True
-        db.session.commit()
+        add_admin('test', 'test@test.com', 'test')
         with self.client:
             # Login with the test user
             resp_login = self.client.post(
@@ -92,10 +86,7 @@ class TestUserService(BaseTestCase):
         a username key.
         """
         # Add a test user, that we will login in with
-        add_user('test', 'test@test.com', 'test')
-        user = User.query.filter_by(email='test@test.com').first()
-        user.admin = True
-        db.session.commit()
+        add_admin('test', 'test@test.com', 'test')
         with self.client:
             # Login with the test user
             resp_login = self.client.post(
@@ -127,10 +118,7 @@ class TestUserService(BaseTestCase):
     def test_add_user_duplicate_email(self):
         """Ensure error is thrown if the email already exists."""
         # Add a test user, that we will login in with
-        add_user('test', 'test@test.com', 'test')
-        user = User.query.filter_by(email='test@test.com').first()
-        user.admin = True
-        db.session.commit()
+        add_admin('test', 'test@test.com', 'test')
         with self.client:
             # Login with the test user
             resp_login = self.client.post(
@@ -267,10 +255,7 @@ class TestUserService(BaseTestCase):
         not have a password key.
         """
         # Add a test user, that we will login in with
-        add_user('test', 'test@test.com', 'test')
-        user = User.query.filter_by(email='test@test.com').first()
-        user.admin = True
-        db.session.commit()
+        add_admin('test', 'test@test.com', 'test')
         with self.client:
             # Login with the test user
             resp_login = self.client.post(
