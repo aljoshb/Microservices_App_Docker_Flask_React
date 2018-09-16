@@ -3,7 +3,7 @@ import React from 'react';
 const UsersList = (props) => {
     return (
         <div>
-            <h1 className="title is-1">All Users.</h1>
+            <h1 className="title is-1">All Users</h1>
             <hr/><br/>
             <table className="table is-hoverable is-fullwidth">
                 <thead>

@@ -5,7 +5,7 @@ exports[`UsersList renders a snapshot properly 1`] = `
   <h1
     className="title is-1"
   >
-    All Users.
+    All Users
   </h1>
   <hr />
   <br />

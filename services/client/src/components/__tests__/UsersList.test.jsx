@@ -23,7 +23,7 @@ const users = [
 
 test('UsersList renders properly', () => {
     const wrapper = shallow(<UsersList users={users}/>);
-    expect(wrapper.find('h1').get(0).props.children).toBe('All Users.');
+    expect(wrapper.find('h1').get(0).props.children).toBe('All Users');
     /* Table */
     const table = wrapper.find('table');
     expect(table.length).toBe(1);
