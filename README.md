@@ -54,14 +54,26 @@ The app was developed using the principles of TDD. To run the tests for the ```u
 
 To run the tests for the ```client``` service, cd into the root directory of the app and run the following command:
 
-        $ docker-compose -f docker-compose-dev.yml run client npm test 
+        $ docker-compose -f docker-compose-dev.yml run client npm test
+
+To run all the unit and integration tests, run the ```test.sh``` script from the root of the repository as follows:
+
+        $ sh test.sh
+
+You can also run the ```test.sh``` script using the following command:
+
+        $ ./test.sh
+
+Only after granting permission by doing:
+
+        $ chmod +x ./test.sh
 
 ## Test Coverage
 
 For test coverage, this project uses ```Coverage.py```. To find out how much test coverage the app has, run the following command:
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py cov
-        
+
 ## Seeding the database
 
 Sometimes it might be helpful to seed the database with some initial data during development in order to get some useful response. This can be done from the command line using the following command:
