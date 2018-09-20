@@ -110,6 +110,8 @@ Then open the Cypress test runner desktop app:
 
         $ ./node_modules/.bin/cypress open
 
+From the Crypress test runner app, you can run all the tests. But, ensure that the ```baseUrl``` field is set to ```http://localhost``` in the ```crypress.json``` configuration file.
+
 ## Database Migration
 
 The database migration steps are as follows:
