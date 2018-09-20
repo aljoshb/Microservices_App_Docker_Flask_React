@@ -1,0 +1,6 @@
+{
+    "name": "microservicetdd",
+    "devDependencies": {
+        "cypress": "^3.0.1"
+    }
+}

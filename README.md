@@ -20,7 +20,9 @@ Digging a bit deeper, you'll find that the project uses the following:
 
 ```Python, Flask, Flask-SQLAlchemy, PostgreSQL, Flask-Testing, Gunicorn, Nginx, Docker, Docker Compose, Docker Machine, Flask Blueprints, Jinja Templates, Travis (CI), Node, Create React App, React, Enzyme, Jest, Axios, Flask-CORS, React forms, Flask Debug Toolbar, Flask-Migrate, Flask-Bcrypt, PyJWT, react-router-dom, Bulma, React Authentication and Authorization, Cypress, Swagger UI, AWS, EC2, Elastic Container Registry (ECR), Elastic Container Service (ECS), Elastic Load Balancing (ELB), Application Load Balancer (ALB), Relational Database Service (RDS), AWS Lambda and API Gateway, AWS Lambda and ECS, PropTypes```
 
-## Run the app with Docker Compose
+## Run the app with Docker Compose Locally
+
+NOTE: You need to ensure that ```users``` database has been created first, so if this is the first time starting up the containers (after taking them down), complete the ```Creating a database for Manual Development Testing``` and ```Seeding the database``` sections.
 
 To run and build the application locally (in development mode), cd into the root directory and type the following command:
 
@@ -30,11 +32,17 @@ The above command will build and run the application, in the background (because
 
 Once the command is executed, you can access the app at the following link: [http://localhost:5001/users/ping]("http://localhost:5001/users/ping").
 
-## Creating a database for Testing
+## Creating a database for Manual Development Testing
 
 This application is composed of a few services which all depend on their individual databases. To test the ```users``` service, you can first create a ```users``` database, from the command line, by using this command (at the root of the app):
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py recreate_db
+
+## Seeding the database
+
+Sometimes it might be helpful to seed the database with some initial data during development in order to get some useful response. This can be done from the command line using the following command:
+
+        $ docker-compose -f docker-compose-dev.yml run users python manage.py seed_db
 
 # Get into psql manually
 
@@ -46,6 +54,14 @@ You can then connect to a database, for instance, to connect to the development 
 
         # \c users_dev
 
+To view the tables in the ```users_dev``` database:
+
+        # \d users
+
+To exit from the psql REPL:
+
+        # \q
+
 ## Testing the app
 
 The app was developed using the principles of TDD. To run the tests for the ```users``` service, cd into the root directory of the app and run the following command:
@@ -55,6 +71,8 @@ The app was developed using the principles of TDD. To run the tests for the ```u
 To run the tests for the ```client``` service, cd into the root directory of the app and run the following command:
 
         $ docker-compose -f docker-compose-dev.yml run client npm test
+
+### Testing Script
 
 To run all the unit and integration tests, run the ```test.sh``` script from the root of the repository as follows:
 
@@ -68,17 +86,29 @@ Only after granting permission by doing:
 
         $ chmod +x ./test.sh
 
-## Test Coverage
+### Test Coverage
 
-For test coverage, this project uses ```Coverage.py```. To find out how much test coverage the app has, run the following command:
+For test coverage, this project uses ```Coverage.py``` to test the python applications. To run test coverage on the ```users``` service:
 
         $ docker-compose -f docker-compose-dev.yml run users python manage.py cov
 
-## Seeding the database
+To run test coverage on the ```client``` service, this project uses ```npm```'s built in test coverage option:
 
-Sometimes it might be helpful to seed the database with some initial data during development in order to get some useful response. This can be done from the command line using the following command:
+        $ docker-compose -f docker-compose-dev.yml run client npm test -- --coverage
 
-        $ docker-compose -f docker-compose-dev.yml run users python manage.py seed_db
+NOTE: Running the ```test.sh``` script will run all these tests and more. This section is just to show you how to run it manually on your own.
+
+### End to End Testing with Cypress
+
+For the end to end test, ```crypress``` is used. ```cypress``` is a desktop application that can be used to test anything that runs in the browser.
+
+To get started, create a ```package.json``` file in the root folder of the application, install ```crypress``` as a ```dev-dependency```:
+
+        $ npm install cypress@3.0.1 --save-dev
+
+Then open the Cypress test runner desktop app:
+
+        $ ./node_modules/.bin/cypress open
 
 ## Database Migration
 
