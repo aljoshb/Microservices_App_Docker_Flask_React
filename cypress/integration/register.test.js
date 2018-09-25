@@ -21,10 +21,11 @@ describe('Register', () => {
 
         // Assert user is redirected to '/'
         // Assert '/' is displayed properly
+        cy.get('.navbar-burger').click();
         cy.contains('All Users');
         cy.contains(username);
         cy.get('.navbar-burger').click();
-        cy.get('.navbar-menu').within( () => {
+        cy.get('.navbar-menu').within(() => {
             cy
                 .get('.navbar-item').contains('User Status')
                 .get('.navbar-item').contains('Log Out')

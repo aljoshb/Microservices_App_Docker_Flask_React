@@ -30,9 +30,10 @@ describe('Login', () => {
             .get('input[name="password"]').type('test')
             .get('input[type="submit"]').click()
             .wait(100);
-
+        
         // Assert user is redirected to '/'
         // Assert '/' is displayed properly
+        cy.get('.navbar-burger').click();
         cy.contains('All Users');
         cy
             .get('table')
@@ -43,8 +44,8 @@ describe('Login', () => {
             cy
                 .get('.navbar-item').contains('User Status')
                 .get('.navbar-item').contains('Log Out')
-                .get('.navbar-item').contains('Log In').should('not.be.visible')
-                .get('.navbar-item').contains('Register').should('not.be.visible');
+                .get('.navbar-item').contains('Register').should('not.be.visible')
+                .get('.navbar-item').contains('Log In').should('not.be.visible');
         });
 
         // Log a user out
