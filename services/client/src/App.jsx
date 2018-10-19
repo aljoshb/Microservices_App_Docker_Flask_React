@@ -18,7 +18,7 @@ class App extends Component {
             users: [],
             username: '',
             email: '',
-            title: 'MicroServiceTDD',
+            title: 'CodeV',
             isAuthenticated: false,
         };
         this.logoutUser = this.logoutUser.bind(this);
