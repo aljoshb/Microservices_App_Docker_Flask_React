@@ -25,19 +25,10 @@ cli = FlaskGroup(create_app=create_app)
 # Make the `recreate_db` command accessible from the command line
 @cli.command()
 def recreate_db():
+    """Recreate the database from scratch"""
     db.drop_all()
     db.create_all()
     db.session.commit()
-
-# Make the `test` command accessible from the command line
-@cli.command()
-def test():
-    """Runs the tests without code coverage"""
-    tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
-    result = unittest.TextTestRunner(verbosity=2).run(tests)
-    if result.wasSuccessful():
-        return 0
-    return 1
 
 # Make the `seed_db` command accessible from the command line
 @cli.command()
@@ -54,6 +45,16 @@ def seed_db():
         password="greaterthaneight"
     ))
     db.session.commit()
+
+# Make the `test` command accessible from the command line
+@cli.command()
+def test():
+    """Runs the tests without code coverage"""
+    tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    return 1
 
 # Make the `cov` command accessible from the command line
 @cli.command()
