@@ -11,17 +11,17 @@ inspect() {
 
 # Run unit and integration tests
 docker-compose -f docker-compose-dev.yml up -d --build
-docker-compose -f docker-compose-dev.yml run users python manage.py test
+docker-compose -f docker-compose-dev.yml exec users python manage.py test
 inspect $? users
-docker-compose -f docker-compose-dev.yml run users flake8 project
+docker-compose -f docker-compose-dev.yml exec users flake8 project
 inspect $? users-lint
-docker-compose -f docker-compose-dev.yml run client npm test -- --coverage
+docker-compose -f docker-compose-dev.yml exec client npm test -- --coverage
 inspect $? client
 docker-compose -f docker-compose-dev.yml down
 
 # Run the end-to-end (e2e) tests
 docker-compose -f docker-compose-prod.yml up -d --build
-docker-compose -f docker-compose-prod.yml run users python manage.py recreate_db
+docker-compose -f docker-compose-prod.yml exec users python manage.py recreate_db
 ./node_modules/.bin/cypress run --config baseUrl=http://localhost # by default cypress run, runs tests headlessly, i.e. does not open up the browser
 inspect $? e2e
 docker-compose -f docker-compose-prod.yml down

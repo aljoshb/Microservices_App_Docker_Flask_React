@@ -34,17 +34,17 @@ def recreate_db():
 @cli.command()
 def seed_db():
     """Seeds the database (i.e. adds some initial data)"""
-    # db.session.add(User(
-    #     username='josh',
-    #     email="bolualawode@gmail.com",
-    #     password='greaterthaneight'
-    # ))
-    # db.session.add(User(
-    #     username='jondoe',
-    #     email="jon@doe.com",
-    #     password="greaterthaneight"
-    # ))
-    # db.session.commit()
+    db.session.add(User(
+        username='josh',
+        email="bolualawode@gmail.com",
+        password='greaterthaneight'
+    ))
+    db.session.add(User(
+        username='jondoe',
+        email="jon@doe.com",
+        password="greaterthaneight"
+    ))
+    db.session.commit()
 
 # Make the `test` command accessible from the command line
 @cli.command()
