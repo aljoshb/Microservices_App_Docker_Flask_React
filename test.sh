@@ -20,11 +20,11 @@ inspect $? client
 docker-compose -f docker-compose-dev.yml down
 
 # Run the end-to-end (e2e) tests
-# docker-compose -f docker-compose-prod.yml up -d --build
-# docker-compose -f docker-compose-prod.yml run users python manage.py recreate_db
-# ./node_modules/.bin/cypress run --config baseUrl=http://localhost # by default cypress run, runs tests headlessly, i.e. does not open up the browser
-# inspect $? e2e
-# docker-compose -f docker-compose-prod.yml down
+docker-compose -f docker-compose-prod.yml up -d --build
+docker-compose -f docker-compose-prod.yml run users python manage.py recreate_db
+./node_modules/.bin/cypress run --config baseUrl=http://localhost # by default cypress run, runs tests headlessly, i.e. does not open up the browser
+inspect $? e2e
+docker-compose -f docker-compose-prod.yml down
 
 # Return the appropriate code based on tests success/failure
 if [ -n "${fails}" ]; then
