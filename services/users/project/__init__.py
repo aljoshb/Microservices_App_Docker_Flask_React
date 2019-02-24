@@ -13,7 +13,7 @@ db = SQLAlchemy()
 # Create an instance of the Flask toolbar
 toolbar = DebugToolbarExtension()
 
-# Data migration
+# Schema migrations
 migrate = Migrate()
 
 # Bcrypt for password hashing extension
