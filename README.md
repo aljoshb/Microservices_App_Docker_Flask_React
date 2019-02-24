@@ -146,3 +146,7 @@ Also, you need to set the ```REACT_APP_USERS_SERVICE_URL``` environment variable
 To point the docker client back to the local/development docker machine:
 
         $ eval $(docker-machine env -u)
+
+Reset the ```REACT_APP_USERS_SERVICE_URL``` environment variable:
+
+        $ export REACT_APP_USERS_SERVICE_URL=http://localhost
