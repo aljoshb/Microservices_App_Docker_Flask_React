@@ -132,7 +132,7 @@ The above command should be run from the root of ```services/users/```.
 
 For ensure good code quality according to ```pep8``` standards, this project uses ```Flake8``` for linting. The linting tests are also run as part of the continous integration pipeline with Travis.
 
-## Production
+## Production vs Development docker machine
 
 To point the docker client to the docker production machine, run the following commands:
 
