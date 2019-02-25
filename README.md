@@ -28,9 +28,17 @@ To run and build the application locally (in development mode), cd into the root
 
         $ docker-compose -f docker-compose-dev.yml up -d --build
 
-The above command will build and run the application, in the background (because of the ```-d``` flag) and not show any debug output. To show the debug output (which might be preferrable, incase the app crahses) remove the ```-d``` flag from the command above.
+The above command will build and run the application, in the background (because of the ```-d``` flag) and not show any debug output. To show the debug output (which might be preferrable, incase the app crahses) remove the ```-d``` flag from the command above. By "run the application", I mean the command will create all the containers, and run the default commands specified in the docker files of the container's images.
 
-Once the command is executed, you can access the app at the following link: [http://localhost:5001/users/ping]("http://localhost:5001/users/ping").
+At this point, the databases will have been created (i.e. `users_dev`, `users_prod` and `users_test`) because there were specified in the `user-db` service `Dockerfile`. However, the actual tables in these databases will not have been created, since there is no command in the application code that actually creates the database (for instance, no `db.create_all()` command in the `users` service code, which is needed to create the tables).
+
+Therefore, you will need to run the database migrations on the application. The migration scripts have already been created, so to apply them use the following command:
+
+        $ docker-compose -f docker-compose-dev.yml exec users python manage.py db upgrade
+
+Note that `exec` is used since this assumes you have already ran the above command and the `users` container is running.
+
+Once application is running and the migrations have been executed, you can access the app at the following links: [http://localhost:5001/users/ping]("http://localhost:5001/users/ping") and [http://localhost]("http://localhost"). Trying to access these links without running the migration will lead to an internal server error, since the `users` relation (i.e. table) has not yet been created.
 
 ## Creating a database for Manual Development Testing
 
