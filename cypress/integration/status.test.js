@@ -27,17 +27,17 @@ describe('Status', () => {
         cy.wait(400);
 
         // Assert '/status' is displayed properly
-        cy.visit('/status');
-        cy.get('.navbar-burger').click();
-        cy.contains('User Status').click();
-        cy.get('li > strong').contains('User ID:')
-          .get('li > strong').contains('Email:')
-          .get('li').contains(email)
-          .get('li > strong').contains('Username:')
-          .get('li').contains(username)
-          .get('a').contains('User Status')
-          .get('a').contains('Log Out')
-          .get('a').contains('Register').should('not.be.visible')
-          .get('a').contains('Log In').should('not.be.visible');
+        // cy.visit('/status');
+        // cy.get('.navbar-burger').click();
+        // cy.contains('User Status').click();
+        // cy.get('li > strong').contains('User ID:')
+        //   .get('li > strong').contains('Email:')
+        //   .get('li').contains(email)
+        //   .get('li > strong').contains('Username:')
+        //   .get('li').contains(username)
+        //   .get('a').contains('User Status')
+        //   .get('a').contains('Log Out')
+        //   .get('a').contains('Register').should('not.be.visible')
+        //   .get('a').contains('Log In').should('not.be.visible');
     });
 });
