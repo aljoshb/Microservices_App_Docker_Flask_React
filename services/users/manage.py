@@ -23,7 +23,7 @@ app = create_app()
 cli = FlaskGroup(create_app=create_app)
 
 # Make the `recreate_db` command accessible from the command line
-@cli.command()
+@cli.command("recreate_db")
 def recreate_db():
     """Recreate the database from scratch"""
     db.drop_all()
@@ -31,7 +31,7 @@ def recreate_db():
     db.session.commit()
 
 # Make the `seed_db` command accessible from the command line
-@cli.command()
+@cli.command("seed_db")
 def seed_db():
     """Seeds the database (i.e. adds some initial data)"""
     db.session.add(User(
