@@ -16,8 +16,6 @@ class App extends Component {
         super();
         this.state = {
             users: [],
-            username: '',
-            email: '',
             title: 'CodeV',
             isAuthenticated: false,
         };
