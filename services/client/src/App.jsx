@@ -24,6 +24,7 @@ class App extends Component {
         };
         this.logoutUser = this.logoutUser.bind(this);
         this.loginUser = this.loginUser.bind(this);
+        this.createMessage = this.createMessage.bind(this);
     }
 
     getUsers() {
@@ -91,6 +92,7 @@ class App extends Component {
                                             formType={'Register'}
                                             isAuthenticated={this.state.isAuthenticated}
                                             loginUser={this.loginUser}
+                                            createMessage={this.createMessage}
                                         />
                                     )} />
                                     <Route exact path="/login" render={() => (
@@ -98,6 +100,7 @@ class App extends Component {
                                             formType={'Login'}
                                             isAuthenticated={this.state.isAuthenticated}
                                             loginUser={this.loginUser}
+                                            createMessage={this.createMessage}
                                         />
                                     )} />
                                     <Route exact path='/logout' render={() => (
