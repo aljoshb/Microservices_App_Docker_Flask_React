@@ -25,6 +25,7 @@ class App extends Component {
         this.logoutUser = this.logoutUser.bind(this);
         this.loginUser = this.loginUser.bind(this);
         this.createMessage = this.createMessage.bind(this);
+        this.removeMessage = this.removeMessage.bind(this);
     }
 
     getUsers() {
@@ -49,6 +50,16 @@ class App extends Component {
         this.setState({
             messageName: name,
             messageType: type
+        });
+        setTimeout(() => {
+            this.removeMessage();
+        }, 3000);
+    }
+
+    removeMessage() {
+        this.setState({
+            messageName: null,
+            messageType: null
         });
     }
 
@@ -75,6 +86,7 @@ class App extends Component {
                             <Message
                                 messageName={this.state.messageName}
                                 messageType={this.state.messageType}
+                                removeMessage={this.removeMessage}
                             />
                         }
                         <div className="columns">
