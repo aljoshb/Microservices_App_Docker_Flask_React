@@ -86,6 +86,18 @@ To run all the unit and integration tests, run the ```test.sh``` script from the
 
         $ sh test.sh
 
+To run only the server side tests:
+
+        $ sh test.sh server
+
+To run only the client side tests:
+
+        $ sh test.sh client
+
+To run only the end to end tests:
+
+        $ sh test.sh e2e
+
 You can also run the ```test.sh``` script using the following command:
 
         $ ./test.sh
