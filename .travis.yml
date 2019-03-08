@@ -4,7 +4,7 @@ services:
   - docker
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.21.1
+  DOCKER_COMPOSE_VERSION: 1.23.2
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
@@ -18,4 +18,4 @@ before_script:
   - npm install
 
 script:
-  - bash test.sh
+  - bash test.sh stage
