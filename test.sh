@@ -13,7 +13,7 @@ inspect() {
 # Run server side tests
 server() {
     docker-compose -f docker-compose-dev.yml up -d --build
-    docker-compose -f docker-compose-dev.yml exec users python manage.py test
+    docker-compose -f docker-compose-dev.yml exec users python manage.py cov
     inspect $? users
     docker-compose -f docker-compose-dev.yml exec users flake8 project
     inspect $? users-lint

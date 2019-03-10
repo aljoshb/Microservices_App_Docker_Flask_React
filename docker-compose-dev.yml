@@ -39,6 +39,7 @@ services:
     depends_on:
       - users
       - client
+      - swagger
 
   client:
     build:
