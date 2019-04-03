@@ -24,6 +24,7 @@ ENV NODE_ENV $NODE_ENV
 COPY . /usr/src/app
 RUN npm run build
 
+
 #########
 # FINAL #
 #########
@@ -31,7 +32,8 @@ RUN npm run build
 # base image
 FROM nginx:1.15.8-alpine
 
-# Update nginx conf
+# new
+# update nginx conf
 RUN rm -rf /etc/nginx/conf.d
 COPY conf /etc/nginx
 
